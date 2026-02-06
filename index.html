@@ -9,6 +9,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
 <style>
+  <script>
+  // SET TANGGAL PERNIKAHAN (YYYY-MM-DDTHH:MM:SS)
+  const weddingDate = new Date("2026-03-10T08:00:00").getTime();
+
+  const countdown = setInterval(function () {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if (distance < 0) {
+      clearInterval(countdown);
+      document.getElementById("countdown").innerHTML =
+        "<h3 class='mt-3'>💍 Acara Sedang Berlangsung</h3>";
+      return;
+    }
+
+    document.getElementById("days").innerText =
+      Math.floor(distance / (1000 * 60 * 60 * 24));
+    document.getElementById("hours").innerText =
+      Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    document.getElementById("minutes").innerText =
+      Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    document.getElementById("seconds").innerText =
+      Math.floor((distance % (1000 * 60)) / 1000);
+  }, 1000);
+</script>
+
   body {
     font-family: 'Playfair Display', serif;
     background: url('4728244.jpg') center/cover no-repeat;
@@ -45,6 +71,42 @@
   <div class="fade">
     <h5 class="mb-3">Undangan Pernikahan</h5>
     <h1 class="gold mb-4">Jundi Immadulhaq & Aisyah</h1>
+    <!-- Countdown -->
+<div class="row justify-content-center mb-4" id="countdown">
+  <div class="col-3 col-md-2">
+    <div class="card bg-transparent border-light text-white">
+      <div class="card-body p-2">
+        <h3 id="days">0</h3>
+        <small>Hari</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 col-md-2">
+    <div class="card bg-transparent border-light text-white">
+      <div class="card-body p-2">
+        <h3 id="hours">0</h3>
+        <small>Jam</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 col-md-2">
+    <div class="card bg-transparent border-light text-white">
+      <div class="card-body p-2">
+        <h3 id="minutes">0</h3>
+        <small>Menit</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 col-md-2">
+    <div class="card bg-transparent border-light text-white">
+      <div class="card-body p-2">
+        <h3 id="seconds">0</h3>
+        <small>Detik</small>
+      </div>
+    </div>
+  </div>
+</div>
+
     <button class="btn btn-outline-light px-4" onclick="bukaUndangan()">
       💌 Buka Undangan
     </button>
@@ -124,5 +186,6 @@ setInterval(() => {
 
 </body>
 </html>
+
 
 
